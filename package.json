@@ -23,6 +23,7 @@
     "prepublishOnly": "vp run build"
   },
   "dependencies": {
+    "@lucide/vue": "^1.47.0",
     "reka-ui": "^2.10.5"
   },
   "devDependencies": {

@@ -17,7 +17,16 @@ If `vp` is not installed globally, prefix with `pnpm exec`.
 
 ## Conventions
 
-- Components live in `src/components/Ij*.vue` and are exported from `src/index.ts`.
+- Components live in `src/components/Ij*.vue` (multi-part components in a
+  subfolder, e.g. `src/components/menu/`) and are exported from `src/index.ts`.
+- Reka parts that need no styling (Root, Trigger, Group, Sub) are re-exported
+  from `src/index.ts` under an `Ij*` alias instead of getting a wrapper SFC.
+- CSS shared across parts goes in a plain `.css` file imported by `src/index.ts`
+  (e.g. `menu/menu.css`); single-part styles stay in the SFC.
+- Reka portals render only after mount, so SSR tests must use the bare
+  (non-portaled) content; verify portaled UI in the playground.
+- Icons come from `@lucide/vue` (size 16, `stroke-width` 1.5 to match
+  Notion's thin strokes); do not hand-draw SVGs.
 - Use only `--ij-*` tokens for colors, radii, and font sizes.
 - Declare props inline in SFCs: the Vue compiler cannot resolve interfaces
   that extend types from node_modules (e.g. reka-ui's `PrimitiveProps`).

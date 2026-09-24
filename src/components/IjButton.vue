@@ -32,6 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style>
 .ij-button {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -49,8 +50,15 @@ const props = withDefaults(defineProps<Props>(), {
   transition: background 20ms ease-in;
 }
 
-.ij-button:hover {
+/* data-state="open" is set by menu/popover triggers (asChild); Notion keeps
+   the hover color while the popup is open, wherever the pointer is. */
+.ij-button:hover,
+.ij-button[data-state="open"] {
   background: var(--ij-bg-hover);
+}
+
+.ij-button:active {
+  background: var(--ij-bg-active);
 }
 
 .ij-button:focus-visible {
@@ -81,7 +89,9 @@ const props = withDefaults(defineProps<Props>(), {
   color: #fff;
 }
 
-.ij-button--primary:hover {
+.ij-button--primary:hover,
+.ij-button--primary:active,
+.ij-button--primary[data-state="open"] {
   background: var(--ij-accent-hover);
 }
 </style>

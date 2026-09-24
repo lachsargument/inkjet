@@ -1,0 +1,135 @@
+/* Shared by content/sub-content and item/sub-trigger, hence not in an SFC. */
+.ij-menu-content {
+  box-sizing: border-box;
+  min-width: 220px;
+  max-height: var(--reka-dropdown-menu-content-available-height);
+  overflow-y: auto;
+  padding: 4px;
+  border-radius: var(--ij-radius-xl);
+  background: var(--ij-bg-popover);
+  box-shadow: var(--ij-shadow-popover);
+  color: var(--ij-text);
+  font-family: var(--ij-font);
+  outline: none;
+  z-index: 1000;
+  transform-origin: var(--reka-dropdown-menu-content-transform-origin);
+}
+
+/* Sampled from Notion: opens with fade + scale from 0.96 over 200ms,
+   closes with a short fade only. Reka's Presence waits for the close
+   animation before unmounting. */
+.ij-menu-content[data-state="open"] {
+  animation: ij-menu-in 200ms ease;
+}
+
+.ij-menu-content[data-state="closed"] {
+  animation: ij-menu-out 70ms ease-in;
+}
+
+@keyframes ij-menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes ij-menu-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ij-menu-content[data-state] {
+    animation: none;
+  }
+}
+
+.ij-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: var(--ij-radius);
+  font-size: var(--ij-font-size);
+  line-height: 1.2;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.ij-menu-item[data-highlighted],
+.ij-menu-item[data-state="open"] {
+  background: var(--ij-bg-hover);
+}
+
+.ij-menu-item--danger[data-highlighted],
+.ij-menu-item--danger[data-highlighted] .ij-menu-item__icon {
+  color: var(--ij-danger);
+}
+
+.ij-menu-item[data-disabled] {
+  color: var(--ij-text-disabled);
+  cursor: default;
+}
+
+.ij-menu-item__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--ij-icon);
+}
+
+.ij-menu-item[data-disabled] .ij-menu-item__icon {
+  color: var(--ij-text-disabled);
+}
+
+.ij-menu-item__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ij-menu-item__trailing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ij-text-tertiary);
+  font-size: var(--ij-font-size-sm);
+}
+
+.ij-menu-label {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 8px;
+  color: var(--ij-text-secondary);
+  font-size: var(--ij-font-size-sm);
+  font-weight: 500;
+}
+
+/* Sampled from Notion's page menu footer: 12/16px lines, 4px apart. */
+.ij-menu-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 8px;
+  color: var(--ij-text-tertiary);
+  font-size: var(--ij-font-size-sm);
+  line-height: 16px;
+  cursor: default;
+  user-select: none;
+}
+
+/* Full-bleed across the content padding, like Notion's section dividers. */
+.ij-menu-separator {
+  height: 1px;
+  margin: 4px -4px;
+  background: var(--ij-border-alpha);
+}

@@ -14,6 +14,7 @@
   --ij-radius-sm: 4px;
   --ij-radius: 6px;
   --ij-radius-lg: 8px;
+  --ij-radius-xl: 10px;
 
   --ij-text: #2c2c2b;
   --ij-text-secondary: #7d7a75;
@@ -26,7 +27,13 @@
   --ij-bg-secondary: #f9f8f7;
   --ij-bg-tertiary: #f0efed;
   --ij-bg-elevated: #fff;
-  --ij-bg-hover: rgba(42, 28, 0, 0.07);
+  /* Notion's --ca-bacIntTra; pressed state doubles the alpha like Notion's buttons. */
+  --ij-bg-hover: rgba(33, 27, 23, 0.05);
+  --ij-bg-active: rgba(33, 27, 23, 0.1);
+  --ij-bg-popover: #fff;
+  --ij-shadow-popover:
+    0 14px 28px -6px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(28, 19, 1, 0.11);
 
   --ij-border: #e6e5e3;
   --ij-border-secondary: #f0efed;
@@ -36,7 +43,8 @@
   --ij-accent: #2383e2;
   --ij-accent-hover: #105fad;
   --ij-accent-soft: rgba(35, 131, 226, 0.14);
-  --ij-danger: #cd3c3a;
+  /* Notion uses the same red (--c-redTexAccPri) in both themes. */
+  --ij-danger: #e56458;
 }
 
 /* Dark values mirror .notion-dark-theme; also opt-in via data-theme. */
@@ -52,12 +60,16 @@
     --ij-bg-secondary: #202020;
     --ij-bg-tertiary: #383836;
     --ij-bg-elevated: #202020;
-    --ij-bg-hover: rgba(255, 255, 243, 0.082);
+    --ij-bg-hover: rgba(255, 255, 255, 0.055);
+    --ij-bg-active: rgba(255, 255, 255, 0.11);
+    --ij-bg-popover: #252525;
+    --ij-shadow-popover:
+      0 0 0 1px #383836, 0 14px 28px -6px rgba(25, 25, 25, 0.2),
+      0 2px 4px -1px rgba(25, 25, 25, 0.118);
     --ij-border: #383836;
     --ij-border-secondary: #2c2c2b;
     --ij-border-strong: #5f5e59;
     --ij-border-alpha: rgba(255, 255, 235, 0.1);
-    --ij-danger: rgba(222, 85, 82, 0.9);
   }
 }
 
@@ -72,10 +84,14 @@
   --ij-bg-secondary: #202020;
   --ij-bg-tertiary: #383836;
   --ij-bg-elevated: #202020;
-  --ij-bg-hover: rgba(255, 255, 243, 0.082);
+  --ij-bg-hover: rgba(255, 255, 255, 0.055);
+  --ij-bg-active: rgba(255, 255, 255, 0.11);
+  --ij-bg-popover: #252525;
+  --ij-shadow-popover:
+    0 0 0 1px #383836, 0 14px 28px -6px rgba(25, 25, 25, 0.2),
+    0 2px 4px -1px rgba(25, 25, 25, 0.118);
   --ij-border: #383836;
   --ij-border-secondary: #2c2c2b;
   --ij-border-strong: #5f5e59;
   --ij-border-alpha: rgba(255, 255, 235, 0.1);
-  --ij-danger: rgba(222, 85, 82, 0.9);
 }
