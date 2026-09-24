@@ -7,12 +7,10 @@
       "runtimeArgs": [
         "exec",
         "vp",
-        "dev",
-        "--port",
-        "5173",
-        "--strictPort"
+        "dev"
       ],
-      "port": 5173
+      "port": 5173,
+      "autoPort": true
     }
   ]
 }
