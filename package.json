@@ -1,0 +1,47 @@
+{
+  "name": "inkjet",
+  "version": "0.0.0",
+  "description": "Inkjet Vue 3 components",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json",
+    "./style.css": "./dist/style.css"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "test": "vp test",
+    "check": "vp check",
+    "prepublishOnly": "vp run build"
+  },
+  "dependencies": {
+    "reka-ui": "^2.10.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "bumpp": "^11.1.0",
+    "typescript": "^6.0.0",
+    "unplugin-vue": "^8.0.0",
+    "vite-plus": "catalog:",
+    "vue": "^3.5.43",
+    "vue-tsc": "^3.3.11"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.6.0",
+      "onFail": "download"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+/*
+ * Design tokens, sampled from app.notion.com (2026-09). Values mirror
+ * Notion's semantic variables (--c-texPri, --c-bacPri, ...) so that
+ * components can be compared side by side with the real app.
+ */
+:root {
+  --ij-font:
+    ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI",
+    Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  --ij-font-size-sm: 12px;
+  --ij-font-size: 14px;
+  --ij-font-size-lg: 16px;
+
+  --ij-radius-sm: 4px;
+  --ij-radius: 6px;
+  --ij-radius-lg: 8px;
+
+  --ij-text: #2c2c2b;
+  --ij-text-secondary: #7d7a75;
+  --ij-text-tertiary: #a19e99;
+  --ij-text-disabled: #bcbab6;
+  --ij-icon: #383836;
+  --ij-icon-secondary: #8e8b86;
+
+  --ij-bg: #fff;
+  --ij-bg-secondary: #f9f8f7;
+  --ij-bg-tertiary: #f0efed;
+  --ij-bg-elevated: #fff;
+  --ij-bg-hover: rgba(42, 28, 0, 0.07);
+
+  --ij-border: #e6e5e3;
+  --ij-border-secondary: #f0efed;
+  --ij-border-strong: #d4d3cf;
+  --ij-border-alpha: rgba(28, 19, 1, 0.11);
+
+  --ij-accent: #2383e2;
+  --ij-accent-hover: #105fad;
+  --ij-accent-soft: rgba(35, 131, 226, 0.14);
+  --ij-danger: #cd3c3a;
+}
+
+/* Dark values mirror .notion-dark-theme; also opt-in via data-theme. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ij-text: #f0efed;
+    --ij-text-secondary: #ada9a3;
+    --ij-text-tertiary: #7d7a75;
+    --ij-text-disabled: #5f5e59;
+    --ij-icon: #e6e5e3;
+    --ij-icon-secondary: #ada9a3;
+    --ij-bg: #191919;
+    --ij-bg-secondary: #202020;
+    --ij-bg-tertiary: #383836;
+    --ij-bg-elevated: #202020;
+    --ij-bg-hover: rgba(255, 255, 243, 0.082);
+    --ij-border: #383836;
+    --ij-border-secondary: #2c2c2b;
+    --ij-border-strong: #5f5e59;
+    --ij-border-alpha: rgba(255, 255, 235, 0.1);
+    --ij-danger: rgba(222, 85, 82, 0.9);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ij-text: #f0efed;
+  --ij-text-secondary: #ada9a3;
+  --ij-text-tertiary: #7d7a75;
+  --ij-text-disabled: #5f5e59;
+  --ij-icon: #e6e5e3;
+  --ij-icon-secondary: #ada9a3;
+  --ij-bg: #191919;
+  --ij-bg-secondary: #202020;
+  --ij-bg-tertiary: #383836;
+  --ij-bg-elevated: #202020;
+  --ij-bg-hover: rgba(255, 255, 243, 0.082);
+  --ij-border: #383836;
+  --ij-border-secondary: #2c2c2b;
+  --ij-border-strong: #5f5e59;
+  --ij-border-alpha: rgba(255, 255, 235, 0.1);
+  --ij-danger: rgba(222, 85, 82, 0.9);
+}
