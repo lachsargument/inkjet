@@ -11,7 +11,7 @@ test("open menu renders items with shortcut and disabled state", async () => {
       // Reka's portal only renders after mount, so SSR uses the bare
       // (non-portaled) content; IjMenuContent is covered in the playground.
       h(DropdownMenuContent, () => [
-        h(IjMenuItem, { shortcut: "⌘D" }, () => "Duplicate"),
+        h(IjMenuItem, { shortcut: "Mod+D" }, () => "Duplicate"),
         h(IjMenuSeparator),
         h(IjMenuItem, { disabled: true, variant: "danger" }, () => "Move to Trash"),
       ]),
@@ -19,7 +19,8 @@ test("open menu renders items with shortcut and disabled state", async () => {
   );
   const html = (await renderToString(app)).replace(/<!--.*?-->/g, "");
   expect(html).toContain('role="menu"');
-  expect(html).toMatch(/class="ij-menu-item__trailing"[^>]*>⌘D/);
+  // Node has no Apple user agent, so the label is the non-Apple form.
+  expect(html).toMatch(/class="ij-menu-item__trailing"[^>]*>Ctrl\+D/);
   expect(html).toMatch(/role="menuitem"[^>]*data-disabled[^>]*>.*Move to Trash/s);
   expect(html).toContain('role="separator"');
   expect(html).toMatch(/class="ij-menu-item ij-menu-item--danger"[^>]*>.*Move to Trash/s);

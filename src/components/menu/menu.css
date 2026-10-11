@@ -1,10 +1,14 @@
 /* Shared by content/sub-content and item/sub-trigger, hence not in an SFC. */
+/* The painted box does not scroll; .ij-menu-viewport inside it does. With
+   background on the scroller itself, elastic overscroll at the ends would
+   pull the content away and show the page behind the rounded corners. */
 .ij-menu-content {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   min-width: 220px;
   max-height: var(--reka-dropdown-menu-content-available-height);
-  overflow-y: auto;
-  padding: 4px;
+  overflow: hidden;
   border-radius: var(--ij-radius-xl);
   background: var(--ij-bg-popover);
   box-shadow: var(--ij-shadow-popover);
@@ -15,8 +19,44 @@
   transform-origin: var(--reka-dropdown-menu-content-transform-origin);
 }
 
-/* Sampled from Notion: opens with fade + scale from 0.96 over 200ms,
-   closes with a short fade only. Reka's Presence waits for the close
+.ij-menu-viewport {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px;
+  /* Repeats the container's background on purpose: Chromium picks the
+     overlay scrollbar style from the scroller's own background, and a
+     transparent one gets the light-track scrollbar. The container's copy
+     underneath is what keeps elastic overscroll from showing the page. */
+  background: var(--ij-bg-popover);
+  --ij-fade-top: 0px;
+  --ij-fade-bottom: 0px;
+}
+
+/* A 34px mask fade on whichever edge has more content beyond it
+   (top, bottom, or both mid-scroll). */
+.ij-menu-viewport[data-fade-top] {
+  --ij-fade-top: 34px;
+}
+
+.ij-menu-viewport[data-fade-bottom] {
+  --ij-fade-bottom: 34px;
+}
+
+.ij-menu-viewport:is([data-fade-top], [data-fade-bottom]) {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--ij-fade-top),
+    #000 calc(100% - var(--ij-fade-bottom)),
+    transparent
+  );
+}
+
+/* Opens with fade + scale from 0.96 over 200ms, closes with a short
+   fade only. Reka's Presence waits for the close
    animation before unmounting. */
 .ij-menu-content[data-state="open"] {
   animation: ij-menu-in 200ms ease;
@@ -104,9 +144,11 @@
   font-size: var(--ij-font-size-sm);
 }
 
+/* Text color, not icon color: the check is the state, so it reads at
+   full contrast. */
 .ij-menu-item__check {
   display: flex;
-  color: var(--ij-icon);
+  color: var(--ij-text);
 }
 
 .ij-menu-label {
@@ -119,7 +161,7 @@
   font-weight: 500;
 }
 
-/* Sampled from Notion's page menu footer: 12/16px lines, 4px apart. */
+/* Meta text footer: 12/16px lines, 4px apart. */
 .ij-menu-footer {
   display: flex;
   flex-direction: column;
@@ -132,7 +174,7 @@
   user-select: none;
 }
 
-/* Full-bleed across the content padding, like Notion's section dividers. */
+/* Full-bleed across the content padding, so sections read as bands. */
 .ij-menu-separator {
   height: 1px;
   margin: 4px -4px;

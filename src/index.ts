@@ -4,6 +4,10 @@ import "./components/switch.css";
 
 export { default as IjButton } from "./components/IjButton.vue";
 export { default as IjSwitch } from "./components/IjSwitch.vue";
+export { default as IjTooltip } from "./components/IjTooltip.vue";
+export { default as IjTooltipProvider } from "./components/IjTooltipProvider.vue";
+export { default as IjCheckIcon } from "./icons/IjCheckIcon.vue";
+export { formatShortcut, matchShortcut, useShortcut } from "./composables/useShortcut.ts";
 
 export {
   DropdownMenuRoot as IjMenu,

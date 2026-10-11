@@ -25,8 +25,22 @@ If `vp` is not installed globally, prefix with `pnpm exec`.
   (e.g. `menu/menu.css`); single-part styles stay in the SFC.
 - Reka portals render only after mount, so SSR tests must use the bare
   (non-portaled) content; verify portaled UI in the playground.
-- Icons come from `@lucide/vue` (size 16, `stroke-width` 1.5 to match
-  Notion's thin strokes); do not hand-draw SVGs.
+- Mount `IjTooltipProvider` once at the app root; Reka throws without it.
+- Tooltip on a menu/popover trigger: put `IjMenuTrigger as-child` OUTSIDE
+  `IjTooltip`. The other way round, the menu anchors to the tooltip's popper
+  context and never positions. Trigger "open" styling keys off
+  `aria-expanded`, since the tooltip overwrites `data-state`.
+- Shortcuts are written as combos ("Mod+Shift+P"; `Mod` = ⌘ on Apple,
+  Ctrl elsewhere) and formatted per platform. `IjMenuItem shortcut` binds
+  only while its menu is open; app-wide bindings use `useShortcut`.
+- Icons come from `@lucide/vue` by default (size 16, `stroke-width` 1.5 for
+  thin strokes). Only when no Lucide glyph fits, redraw one on the Lucide
+  24 grid (round caps/joins, `currentColor` stroke) as an `Ij*Icon.vue` in
+  `src/icons/`, with the geometry in a comment (e.g. `IjCheckIcon`).
+- Do not describe the library as "Notion-style" or use the Notion name in
+  code, comments, docs, package metadata, or commit messages; it is their
+  trademark. The reference app is named only in the intro above, as the
+  source the token values were sampled from.
 - Use only `--ij-*` tokens for colors, radii, and font sizes.
 - Declare props inline in SFCs: the Vue compiler cannot resolve interfaces
   that extend types from node_modules (e.g. reka-ui's `PrimitiveProps`).

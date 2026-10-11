@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Check } from "@lucide/vue";
 import { DropdownMenuCheckboxItem, DropdownMenuItemIndicator } from "reka-ui";
+import IjCheckIcon from "../../icons/IjCheckIcon.vue";
 
 defineProps<{
   disabled?: boolean;
@@ -24,7 +24,7 @@ function keepOpen(event: Event) {
     <span v-if="$slots.icon" class="ij-menu-item__icon"><slot name="icon" /></span>
     <span class="ij-menu-item__label"><slot /></span>
     <DropdownMenuItemIndicator class="ij-menu-item__check">
-      <Check :size="16" :stroke-width="1.5" />
+      <IjCheckIcon />
     </DropdownMenuItemIndicator>
   </DropdownMenuCheckboxItem>
 </template>

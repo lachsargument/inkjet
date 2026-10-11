@@ -1,5 +1,5 @@
 /*
- * Sampled from Notion's menu toggles: 30x18 track, 2px inset, 14px thumb.
+ * 30x18 track, 2px inset, 14px thumb.
  * Shared by IjSwitch and IjMenuSwitchItem, whose switch is a decorative
  * span (the menu item itself carries role="menuitemcheckbox").
  */

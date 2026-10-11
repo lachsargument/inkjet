@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { DropdownMenuContent, DropdownMenuPortal } from "reka-ui";
+import { useTemplateRef } from "vue";
+import { useScrollFade } from "../../composables/useScrollFade.ts";
 
 // Remaining DropdownMenuContent props/listeners arrive via $attrs, which
 // must land on the content rather than the portal wrapper.
@@ -13,6 +15,8 @@ withDefaults(
   }>(),
   { side: "bottom", align: "start", sideOffset: 4 },
 );
+
+const { fadeTop, fadeBottom } = useScrollFade(useTemplateRef("viewport"));
 </script>
 
 <template>
@@ -24,7 +28,14 @@ withDefaults(
       :side-offset="sideOffset"
       class="ij-menu-content"
     >
-      <slot />
+      <div
+        ref="viewport"
+        class="ij-menu-viewport"
+        :data-fade-top="fadeTop || undefined"
+        :data-fade-bottom="fadeBottom || undefined"
+      >
+        <slot />
+      </div>
     </DropdownMenuContent>
   </DropdownMenuPortal>
 </template>

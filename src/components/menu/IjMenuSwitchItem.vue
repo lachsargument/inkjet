@@ -7,7 +7,7 @@ defineProps<{
 
 const checked = defineModel<boolean>({ default: false });
 
-// Notion keeps the menu open when a toggle row is flipped.
+// Toggle rows keep the menu open, so several settings can be flipped.
 function keepOpen(event: Event) {
   event.preventDefault();
 }

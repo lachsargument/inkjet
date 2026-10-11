@@ -1,7 +1,6 @@
 /*
- * Design tokens, sampled from app.notion.com (2026-09). Values mirror
- * Notion's semantic variables (--c-texPri, --c-bacPri, ...) so that
- * components can be compared side by side with the real app.
+ * Design tokens. Light values live on :root; dark values are applied by
+ * the system preference or by data-theme="dark" on <html>.
  */
 :root {
   --ij-font:
@@ -27,7 +26,7 @@
   --ij-bg-secondary: #f9f8f7;
   --ij-bg-tertiary: #f0efed;
   --ij-bg-elevated: #fff;
-  /* Notion's --ca-bacIntTra; pressed state doubles the alpha like Notion's buttons. */
+  /* Pressed doubles the hover alpha. */
   --ij-bg-hover: rgba(33, 27, 23, 0.05);
   --ij-bg-active: rgba(33, 27, 23, 0.1);
   --ij-bg-popover: #fff;
@@ -41,16 +40,27 @@
   --ij-border-alpha: rgba(28, 19, 1, 0.11);
 
   --ij-accent: #2383e2;
-  --ij-accent-hover: #105fad;
+  /* Hover/pressed are derived from this in IjButton: HSL lightness moves
+     by 5/10 in the direction of --ij-shade-dir (-1 darkens, 1 lightens). */
+  --ij-primary: #2783de;
+  --ij-primary-text: #f3f9fd;
+  --ij-shade-dir: -1;
   --ij-accent-soft: rgba(35, 131, 226, 0.14);
-  /* Notion --ca-swiButTeaBg / --c-bluBorAccPri (same "on" color in both themes). */
+  /* The "on" color is the same in both themes. */
   --ij-switch-off: rgba(135, 131, 120, 0.3);
   --ij-switch-on: #2783de;
-  /* Notion uses the same red (--c-redTexAccPri) in both themes. */
+  /* Same red in both themes. */
   --ij-danger: #e56458;
+
+  /* Tooltips stay dark in both themes. */
+  --ij-tooltip-bg: #2c2c2b;
+  --ij-tooltip-text: #f0efed;
+  --ij-tooltip-text-secondary: #ada9a3;
+  --ij-shadow-tooltip:
+    0 4px 12px -2px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
-/* Dark values mirror .notion-dark-theme; also opt-in via data-theme. */
+/* Dark values: system preference, or opt in with data-theme="dark". */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --ij-text: #f0efed;
@@ -66,6 +76,7 @@
     --ij-bg-hover: rgba(255, 255, 255, 0.055);
     --ij-bg-active: rgba(255, 255, 255, 0.11);
     --ij-bg-popover: #252525;
+    --ij-shade-dir: 1;
     --ij-shadow-popover:
       0 0 0 1px #383836, 0 14px 28px -6px rgba(25, 25, 25, 0.2),
       0 2px 4px -1px rgba(25, 25, 25, 0.118);
@@ -91,6 +102,7 @@
   --ij-bg-hover: rgba(255, 255, 255, 0.055);
   --ij-bg-active: rgba(255, 255, 255, 0.11);
   --ij-bg-popover: #252525;
+  --ij-shade-dir: 1;
   --ij-shadow-popover:
     0 0 0 1px #383836, 0 14px 28px -6px rgba(25, 25, 25, 0.2),
     0 2px 4px -1px rgba(25, 25, 25, 0.118);

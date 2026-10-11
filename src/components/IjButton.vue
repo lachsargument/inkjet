@@ -50,10 +50,11 @@ const props = withDefaults(defineProps<Props>(), {
   transition: background 20ms ease-in;
 }
 
-/* data-state="open" is set by menu/popover triggers (asChild); Notion keeps
-   the hover color while the popup is open, wherever the pointer is. */
+/* Menu/popover triggers (asChild) set aria-expanded while their popup is
+   open; the hover color stays then, wherever the pointer is.
+   Not data-state: a wrapping IjTooltip overwrites it with its own state. */
 .ij-button:hover,
-.ij-button[data-state="open"] {
+.ij-button[aria-expanded="true"] {
   background: var(--ij-bg-hover);
 }
 
@@ -83,15 +84,22 @@ const props = withDefaults(defineProps<Props>(), {
   color: var(--ij-text-secondary);
 }
 
+/* HSL lightness shifts 5 on hover and 10 while pressed: darker in light
+   mode, lighter in dark mode (--ij-shade-dir). Relative color syntax keeps
+   both states tied to the --ij-primary token. */
 .ij-button--primary {
   border-color: transparent;
-  background: var(--ij-accent);
-  color: #fff;
+  background: var(--ij-primary);
+  color: var(--ij-primary-text);
+  transition: background 100ms ease-in-out;
 }
 
 .ij-button--primary:hover,
-.ij-button--primary:active,
-.ij-button--primary[data-state="open"] {
-  background: var(--ij-accent-hover);
+.ij-button--primary[aria-expanded="true"] {
+  background: hsl(from var(--ij-primary) h s calc(l + 5 * var(--ij-shade-dir)));
+}
+
+.ij-button--primary:active {
+  background: hsl(from var(--ij-primary) h s calc(l + 10 * var(--ij-shade-dir)));
 }
 </style>
