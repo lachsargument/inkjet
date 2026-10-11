@@ -1,0 +1,18 @@
+/*
+ * Shared by menus and popovers: open with fade + scale from 0.96 over
+ * 200ms, close with a short fade only. Reka's Presence waits for the close
+ * animation before unmounting. Each popup sets its own transform-origin
+ * from Reka's --reka-*-transform-origin so it grows out of its trigger.
+ */
+@keyframes ij-popup-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes ij-popup-out {
+  to {
+    opacity: 0;
+  }
+}

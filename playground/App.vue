@@ -32,6 +32,10 @@ import {
   IjMenuSubTrigger,
   IjMenuSwitchItem,
   IjMenuTrigger,
+  IjPopover,
+  IjPopoverClose,
+  IjPopoverContent,
+  IjPopoverTrigger,
   IjSwitch,
   IjTooltip,
   IjTooltipProvider,
@@ -51,6 +55,7 @@ const locked = ref(false);
 const font = ref("default");
 const showComments = ref(true);
 const showBacklinks = ref(false);
+const publish = ref(false);
 
 const theme = ref<"light" | "dark">(
   matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
@@ -108,6 +113,37 @@ function toggleTheme() {
           <IjTooltip content="A longer tooltip wraps once it reaches the 300px max width.">
             <IjButton size="sm">Long text</IjButton>
           </IjTooltip>
+        </div>
+      </section>
+      <section>
+        <h2>Popover</h2>
+        <div class="row">
+          <IjPopover>
+            <IjPopoverTrigger as-child>
+              <IjButton variant="ghost">Share</IjButton>
+            </IjPopoverTrigger>
+            <IjPopoverContent align="start">
+              <div class="share-panel">
+                <div class="share-panel__title">Share this page</div>
+                <p class="share-panel__text">
+                  Anyone with the link can view. Turn on publishing to make it public.
+                </p>
+                <label class="share-panel__row">
+                  Publish to web
+                  <IjSwitch v-model="publish" />
+                </label>
+                <div class="share-panel__actions">
+                  <IjPopoverClose as-child>
+                    <IjButton size="sm">Cancel</IjButton>
+                  </IjPopoverClose>
+                  <IjPopoverClose as-child>
+                    <IjButton size="sm" variant="primary">Done</IjButton>
+                  </IjPopoverClose>
+                </div>
+              </div>
+            </IjPopoverContent>
+          </IjPopover>
+          <span class="hint">Publish: {{ publish }}</span>
         </div>
       </section>
       <section>
@@ -229,6 +265,39 @@ body {
 .hint {
   color: var(--ij-text-secondary);
   font-size: var(--ij-font-size);
+}
+
+/* Popover content is portaled to <body>, so these are not scoped under
+   .playground. */
+.share-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 320px;
+  padding: 16px;
+}
+
+.share-panel__title {
+  font-weight: 600;
+}
+
+.share-panel__text {
+  margin: 0;
+  color: var(--ij-text-secondary);
+  font-size: var(--ij-font-size-sm);
+  line-height: 1.5;
+}
+
+.share-panel__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.share-panel__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .row {

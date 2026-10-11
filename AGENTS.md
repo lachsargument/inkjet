@@ -26,10 +26,14 @@ If `vp` is not installed globally, prefix with `pnpm exec`.
 - Reka portals render only after mount, so SSR tests must use the bare
   (non-portaled) content; verify portaled UI in the playground.
 - Mount `IjTooltipProvider` once at the app root; Reka throws without it.
-- Tooltip on a menu/popover trigger: put `IjMenuTrigger as-child` OUTSIDE
-  `IjTooltip`. The other way round, the menu anchors to the tooltip's popper
+- Tooltip on a menu/popover trigger: put `IjMenuTrigger`/`IjPopoverTrigger`
+  `as-child` OUTSIDE `IjTooltip`. The other way round, the menu anchors to the tooltip's popper
   context and never positions. Trigger "open" styling keys off
   `aria-expanded`, since the tooltip overwrites `data-state`.
+- Popups (menu, popover) share the open/close keyframes in
+  `components/popup.css`, and paint background/radius/shadow on a box that
+  does not scroll, with an inner scroller that repeats the background (for
+  Chromium's overlay scrollbar style).
 - Shortcuts are written as combos ("Mod+Shift+P"; `Mod` = ⌘ on Apple,
   Ctrl elsewhere) and formatted per platform. `IjMenuItem shortcut` binds
   only while its menu is open; app-wide bindings use `useShortcut`.

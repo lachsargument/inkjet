@@ -55,28 +55,13 @@
   );
 }
 
-/* Opens with fade + scale from 0.96 over 200ms, closes with a short
-   fade only. Reka's Presence waits for the close
-   animation before unmounting. */
+/* Keyframes live in popup.css, shared with popovers. */
 .ij-menu-content[data-state="open"] {
-  animation: ij-menu-in 200ms ease;
+  animation: ij-popup-in 200ms ease;
 }
 
 .ij-menu-content[data-state="closed"] {
-  animation: ij-menu-out 70ms ease-in;
-}
-
-@keyframes ij-menu-in {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-}
-
-@keyframes ij-menu-out {
-  to {
-    opacity: 0;
-  }
+  animation: ij-popup-out 70ms ease-in;
 }
 
 @media (prefers-reduced-motion: reduce) {

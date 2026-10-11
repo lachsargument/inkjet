@@ -1,6 +1,7 @@
 import "./tokens.css";
 import "./components/menu/menu.css";
 import "./components/switch.css";
+import "./components/popup.css";
 
 export { default as IjButton } from "./components/IjButton.vue";
 export { default as IjSwitch } from "./components/IjSwitch.vue";
@@ -26,3 +27,11 @@ export { default as IjMenuSeparator } from "./components/menu/IjMenuSeparator.vu
 export { default as IjMenuSubContent } from "./components/menu/IjMenuSubContent.vue";
 export { default as IjMenuSubTrigger } from "./components/menu/IjMenuSubTrigger.vue";
 export { default as IjMenuSwitchItem } from "./components/menu/IjMenuSwitchItem.vue";
+
+export {
+  PopoverRoot as IjPopover,
+  PopoverTrigger as IjPopoverTrigger,
+  PopoverAnchor as IjPopoverAnchor,
+  PopoverClose as IjPopoverClose,
+} from "reka-ui";
+export { default as IjPopoverContent } from "./components/popover/IjPopoverContent.vue";

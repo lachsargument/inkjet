@@ -14,6 +14,7 @@
   --ij-radius: 6px;
   --ij-radius-lg: 8px;
   --ij-radius-xl: 10px;
+  --ij-radius-2xl: 12px;
 
   --ij-text: #2c2c2b;
   --ij-text-secondary: #7d7a75;
@@ -33,6 +34,10 @@
   --ij-shadow-popover:
     0 14px 28px -6px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(28, 19, 1, 0.11);
+  /* Softer, wider shadow for content panels (popovers) than for menus. */
+  --ij-shadow-panel:
+    0 20px 24px rgba(25, 25, 25, 0.05), 0 5px 8px rgba(25, 25, 25, 0.027),
+    0 0 0 1px rgba(42, 28, 0, 0.07);
 
   --ij-border: #e6e5e3;
   --ij-border-secondary: #f0efed;
@@ -80,6 +85,7 @@
     --ij-shadow-popover:
       0 0 0 1px #383836, 0 14px 28px -6px rgba(25, 25, 25, 0.2),
       0 2px 4px -1px rgba(25, 25, 25, 0.118);
+    --ij-shadow-panel: var(--ij-shadow-popover);
     --ij-border: #383836;
     --ij-border-secondary: #2c2c2b;
     --ij-border-strong: #5f5e59;
@@ -106,6 +112,7 @@
   --ij-shadow-popover:
     0 0 0 1px #383836, 0 14px 28px -6px rgba(25, 25, 25, 0.2),
     0 2px 4px -1px rgba(25, 25, 25, 0.118);
+  --ij-shadow-panel: var(--ij-shadow-popover);
   --ij-border: #383836;
   --ij-border-secondary: #2c2c2b;
   --ij-border-strong: #5f5e59;
