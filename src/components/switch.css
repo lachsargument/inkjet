@@ -1,0 +1,54 @@
+/*
+ * Sampled from Notion's menu toggles: 30x18 track, 2px inset, 14px thumb.
+ * Shared by IjSwitch and IjMenuSwitchItem, whose switch is a decorative
+ * span (the menu item itself carries role="menuitemcheckbox").
+ */
+.ij-switch {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 30px;
+  height: 18px;
+  padding: 2px;
+  border: 0;
+  border-radius: 44px;
+  background: var(--ij-switch-off);
+  cursor: pointer;
+  transition:
+    background 200ms,
+    box-shadow 200ms;
+}
+
+.ij-switch[data-state="checked"] {
+  background: var(--ij-switch-on);
+}
+
+.ij-switch:focus-visible {
+  outline: 2px solid var(--ij-accent-soft);
+  outline-offset: 1px;
+}
+
+.ij-switch[data-disabled] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ij-switch__thumb {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 44px;
+  background: #fff;
+  transition: transform 200ms ease-out;
+}
+
+.ij-switch[data-state="checked"] .ij-switch__thumb {
+  transform: translateX(12px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ij-switch,
+  .ij-switch__thumb {
+    transition: none;
+  }
+}

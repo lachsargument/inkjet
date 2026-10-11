@@ -43,6 +43,9 @@
   --ij-accent: #2383e2;
   --ij-accent-hover: #105fad;
   --ij-accent-soft: rgba(35, 131, 226, 0.14);
+  /* Notion --ca-swiButTeaBg / --c-bluBorAccPri (same "on" color in both themes). */
+  --ij-switch-off: rgba(135, 131, 120, 0.3);
+  --ij-switch-on: #2783de;
   /* Notion uses the same red (--c-redTexAccPri) in both themes. */
   --ij-danger: #e56458;
 }
@@ -70,6 +73,7 @@
     --ij-border-secondary: #2c2c2b;
     --ij-border-strong: #5f5e59;
     --ij-border-alpha: rgba(255, 255, 235, 0.1);
+    --ij-switch-off: rgba(202, 204, 206, 0.3);
   }
 }
 
@@ -94,4 +98,5 @@
   --ij-border-secondary: #2c2c2b;
   --ij-border-strong: #5f5e59;
   --ij-border-alpha: rgba(255, 255, 235, 0.1);
+  --ij-switch-off: rgba(202, 204, 206, 0.3);
 }

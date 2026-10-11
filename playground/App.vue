@@ -1,21 +1,44 @@
 <script setup lang="ts">
-import { ArrowRight, Bell, Copy, Languages, Link, Trash } from "@lucide/vue";
+import {
+  ALargeSmall,
+  ArrowRight,
+  Bell,
+  Copy,
+  Eye,
+  Languages,
+  Link,
+  Lock,
+  MoveHorizontal,
+  Trash,
+  Type,
+} from "@lucide/vue";
 import { ref } from "vue";
 import {
   IjButton,
   IjMenu,
+  IjMenuCheckboxItem,
   IjMenuContent,
   IjMenuFooter,
   IjMenuItem,
   IjMenuLabel,
+  IjMenuRadioGroup,
+  IjMenuRadioItem,
   IjMenuSeparator,
   IjMenuSub,
   IjMenuSubContent,
   IjMenuSubTrigger,
+  IjMenuSwitchItem,
   IjMenuTrigger,
+  IjSwitch,
 } from "../src/index.ts";
 
 const lastAction = ref("none");
+const smallText = ref(false);
+const fullWidth = ref(true);
+const locked = ref(false);
+const font = ref("default");
+const showComments = ref(true);
+const showBacklinks = ref(false);
 
 const theme = ref<"light" | "dark">(
   matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
@@ -38,6 +61,17 @@ function toggleTheme() {
         <IjButton size="sm">Small</IjButton>
         <IjButton disabled>Disabled</IjButton>
         <IjButton as-child><a href="#">Link</a></IjButton>
+      </div>
+    </section>
+    <section>
+      <h2>Switch</h2>
+      <div class="row">
+        <IjSwitch v-model="smallText" />
+        <span class="hint">Small text: {{ smallText }}</span>
+        <IjSwitch v-model="fullWidth" />
+        <span class="hint">Full width: {{ fullWidth }}</span>
+        <IjSwitch disabled />
+        <span class="hint">Disabled</span>
       </div>
     </section>
     <section>
@@ -65,7 +99,44 @@ function toggleTheme() {
               Move to Trash
             </IjMenuItem>
             <IjMenuSeparator />
+            <IjMenuSwitchItem v-model="smallText">
+              <template #icon><ALargeSmall :size="16" :stroke-width="1.5" /></template>
+              Small text
+            </IjMenuSwitchItem>
+            <IjMenuSwitchItem v-model="fullWidth">
+              <template #icon><MoveHorizontal :size="16" :stroke-width="1.5" /></template>
+              Full width
+            </IjMenuSwitchItem>
+            <IjMenuSwitchItem v-model="locked" disabled>
+              <template #icon><Lock :size="16" :stroke-width="1.5" /></template>
+              Lock page
+            </IjMenuSwitchItem>
+            <IjMenuSeparator />
             <IjMenuLabel>Page</IjMenuLabel>
+            <IjMenuSub>
+              <IjMenuSubTrigger>
+                <template #icon><Type :size="16" :stroke-width="1.5" /></template>
+                Font
+                <template #trailing>{{ font }}</template>
+              </IjMenuSubTrigger>
+              <IjMenuSubContent>
+                <IjMenuRadioGroup v-model="font">
+                  <IjMenuRadioItem value="default">Default</IjMenuRadioItem>
+                  <IjMenuRadioItem value="serif">Serif</IjMenuRadioItem>
+                  <IjMenuRadioItem value="mono">Mono</IjMenuRadioItem>
+                </IjMenuRadioGroup>
+              </IjMenuSubContent>
+            </IjMenuSub>
+            <IjMenuSub>
+              <IjMenuSubTrigger>
+                <template #icon><Eye :size="16" :stroke-width="1.5" /></template>
+                Show
+              </IjMenuSubTrigger>
+              <IjMenuSubContent>
+                <IjMenuCheckboxItem v-model="showComments">Comments</IjMenuCheckboxItem>
+                <IjMenuCheckboxItem v-model="showBacklinks">Backlinks</IjMenuCheckboxItem>
+              </IjMenuSubContent>
+            </IjMenuSub>
             <IjMenuSub>
               <IjMenuSubTrigger>
                 <template #icon><Languages :size="16" :stroke-width="1.5" /></template>

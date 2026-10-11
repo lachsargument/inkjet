@@ -104,6 +104,11 @@
   font-size: var(--ij-font-size-sm);
 }
 
+.ij-menu-item__check {
+  display: flex;
+  color: var(--ij-icon);
+}
+
 .ij-menu-label {
   display: flex;
   align-items: center;
